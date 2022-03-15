@@ -8,25 +8,31 @@ public class SnakeNLadder
     {
         int firstPlayer = 0;
 
-        for (int i = 1; i < 10000; i++)
+        for (int i=1; i>0; i++)
         {
-            Random r = new Random();
-            int diceValue = r.nextInt(6) + 1;
-            System.out.println("Dice value is: " + diceValue);
-
-            int option = r.nextInt(3) + 1;
-
-            switch (option)
+        while (firstPlayer<100)
             {
-                case 1 -> {
-                    System.out.println("Player gets ladder move");
-                    firstPlayer=firstPlayer+diceValue;
+                Random r = new Random();
+                int diceValue = r.nextInt(6) + 1;
+                System.out.println("\nNumber of roll: " + i);
+                System.out.println("Dice value is: " + diceValue);
+
+                int option = r.nextInt(3) + 1;
+                switch (option)
+                {
+                    case 1 ->
+                            {
+                        System.out.print("Player gets ladder move: ");
+                        System.out.println(firstPlayer = firstPlayer + diceValue);
+                    }
+                    case 2 -> System.out.println("Player gets to stay");
+                    case 3 ->
+                            {
+                        System.out.print("Player get snake move: ");
+                        System.out.println(firstPlayer = firstPlayer - diceValue);
+                    }
                 }
-                case 2 -> System.out.println("Player gets to stay");
-                case 3 -> {
-                    System.out.println("Player get snake move");
-                    firstPlayer=firstPlayer+diceValue;
-                }
+                firstPlayer = Math.max(firstPlayer, 0);
             }
         }
     }
