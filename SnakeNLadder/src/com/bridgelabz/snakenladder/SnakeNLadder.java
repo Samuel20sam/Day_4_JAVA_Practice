@@ -4,13 +4,30 @@ import java.util.Random;
 
 public class SnakeNLadder
 {
-    int firstPlayer = 0;
-
-    public int rollDice()        //rollDice() method is used to generate a random number between 1 and 6.
+    public static void main(String[] args)
     {
-        Random r = new Random();
-        int n=r.nextInt(6);
-        n=n+1;
-        return (n);
+        int firstPlayer = 0;
+
+        for (int i = 1; i < 10000; i++)
+        {
+            Random r = new Random();
+            int diceValue = r.nextInt(6) + 1;
+            System.out.println("Dice value is: " + diceValue);
+
+            int option = r.nextInt(3) + 1;
+
+            switch (option)
+            {
+                case 1 -> {
+                    System.out.println("Player gets ladder move");
+                    firstPlayer=firstPlayer+diceValue;
+                }
+                case 2 -> System.out.println("Player gets to stay");
+                case 3 -> {
+                    System.out.println("Player get snake move");
+                    firstPlayer=firstPlayer+diceValue;
+                }
+            }
+        }
     }
 }
