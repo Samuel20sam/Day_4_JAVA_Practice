@@ -7,33 +7,39 @@ public class SnakeNLadder
     public static void main(String[] args)
     {
         int firstPlayer = 0;
+        int count = 1;
 
-        for (int i=1; i>0; i++)
-        {
         while (firstPlayer<100)
-            {
-                Random r = new Random();
-                int diceValue = r.nextInt(6) + 1;
-                System.out.println("\nNumber of roll: " + i);
-                System.out.println("Dice value is: " + diceValue);
+        {
+            Random r = new Random();
+            int diceValue = r.nextInt(6) + 1;
+            System.out.println("\nDice value is: " + diceValue);
 
-                int option = r.nextInt(3) + 1;
-                switch (option)
-                {
-                    case 1 ->
-                            {
-                        System.out.print("Player gets ladder move: ");
-                        System.out.println(firstPlayer = firstPlayer + diceValue);
-                    }
-                    case 2 -> System.out.println("Player gets to stay");
-                    case 3 ->
-                            {
-                        System.out.print("Player get snake move: ");
-                        System.out.println(firstPlayer = firstPlayer - diceValue);
-                    }
+            int option = r.nextInt(3) + 1;
+            switch (option)
+            {
+                case 1 ->
+                        {
+                            System.out.print("Player gets ladder move: ");
+                            firstPlayer = firstPlayer + diceValue;
+                            if (firstPlayer > 100) {
+                                firstPlayer = firstPlayer - diceValue;
+                            }
+                            System.out.println(firstPlayer);
+                        }
+                case 2 -> System.out.println("Player gets to stay");
+                case 3 ->
+                        {
+                            System.out.print("Player get snake move: ");
+                            firstPlayer = firstPlayer - diceValue;
+                            firstPlayer = Math.max(firstPlayer, 0);
+                            System.out.println(firstPlayer);
+                        }
+                default -> {
                 }
-                firstPlayer = Math.max(firstPlayer, 0);
             }
         }
+        count++;
+        System.out.println("Number of time dice rolled: " +count);
     }
 }
